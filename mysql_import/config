@@ -1,0 +1,5 @@
+host = myhostname
+user = user
+pass = password
+db = dbname
+prefix = 
