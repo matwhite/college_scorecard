@@ -31,27 +31,27 @@ for my $fn (0..$#{ $schema }) {
 
 # Initialize Program
 my $csv = Text::CSV_XS->new({qw(
-	binary 1 auto_diag 0 allow_loose_quotes 0
+    binary 1 auto_diag 0 allow_loose_quotes 0
 )});
 
 # For Each Data File...
 my $gloid = 0;
 opendir(DIR, '.');
 for my $fn (sort grep { $_ =~ /MERGED\d+_\d+_PP/ } readdir(DIR)) {
-	my ($year) = $fn =~ /MERGED(\d+)_/;
-	warn("$fn $year\n");
+    my ($year) = $fn =~ /MERGED(\d+)_/;
+    warn("$fn $year\n");
 
-	# Parse The Data And Build SQL
-	
-	open(my $fh, "<", $fn) or die "Error: $!";
-	my $i = 0;
-	while (my $row = $csv->getline($fh)) {
-		$gloid++;
-		if ($i == 0) {
-			$i++;
-			next;
-		}
-		$i++;
+    # Parse The Data And Build SQL
+
+    open(my $fh, "<", $fn) or die "Error: $!";
+    my $i = 0;
+    while (my $row = $csv->getline($fh)) {
+        $gloid++;
+        if ($i == 0) {
+            $i++;
+            next;
+        }
+        $i++;
         print"GOT ROW $gloid Y $year UNITID $row->[0] OPEID $row->[1]\n";
         # Assume Year + UNITID + OPEID = Unique Row ID
         my $res = $dbh->selectrow_arrayref(sprintf(
@@ -83,15 +83,15 @@ for my $fn (sort grep { $_ =~ /MERGED\d+_\d+_PP/ } readdir(DIR)) {
                 }
             }
         }
-	}
+    }
 }
 
 closedir(DIR);
 
 sub make_list {
-	my @data = @_;
-	return join(
-		',',
-		map { DBD::_::db->quote($_) } @data
-	);
+    my @data = @_;
+    return join(
+        ',',
+        map { DBD::_::db->quote($_) } @data
+    );
 }
