@@ -1,5 +1,9 @@
 #!/usr/bin/perl
 
+# Mathew White <mwhite@xmission.com>
+
+# Inspired By Ben Hamner's SQLite Importer at https://www.kaggle.com/benhamner/d/kaggle/college-scorecard/exploring-the-us-college-scorecard-data
+
 use strict;
 use Data::Dumper;
 

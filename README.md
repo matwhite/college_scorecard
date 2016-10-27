@@ -8,6 +8,7 @@ records. Inside of <a href="/mysql_import">/mysql_import</a> you will find
 the "build_database.pl" script to help you extract the data and dump it into a
 MySQL database. This assumes you have access to the MySQL service and have
 permissions to create tables and views within the database you are using.
+This was inspired by the work Ben Hamner did on <a href="https://www.kaggle.com/benhamner/d/kaggle/college-scorecard/exploring-the-us-college-scorecard-data">importing the same data into SQLite</a>.
 
 * Step 0 - clone this repo
 
